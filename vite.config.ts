@@ -5,6 +5,7 @@ import vitePluginInjectDataLocator from "./plugins/vite-plugin-inject-data-locat
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/<ИМЯ_ВАШЕГО_РЕПОЗИТОРИЯ>/", // ← добавьте эту строку
   plugins: [react(), vitePluginInjectDataLocator()],
   server: {
     allowedHosts: true,
