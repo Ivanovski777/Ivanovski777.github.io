@@ -1,10 +1,11 @@
 import React from "react";
-import { Card, CardBody, CardFooter, Button, Divider } from "@heroui/react";
+import { Card, CardBody, CardFooter, Button, Divider, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Input, Textarea } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { m as motion, useReducedMotion } from "framer-motion";
 
 export const PricingSection = () => {
   const shouldReduceMotion = useReducedMotion();
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -43,7 +44,7 @@ export const PricingSection = () => {
         "Отслеживание заказа в реальном времени"
       ],
       buttonText: "Заказать на Wildberries",
-      color: "primary"
+      color: "secondary"
     },
     {
       name: "Ozon",
@@ -57,9 +58,16 @@ export const PricingSection = () => {
         "Профессиональная служба поддержки"
       ],
       buttonText: "Заказать на Ozon",
-      color: "secondary"
+      color: "primary"
     }
   ];
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log("Form submitted");
+    onOpenChange(false);
+  };
 
   return (
     <section id="pricing" className="py-16 md:py-24">
@@ -143,10 +151,68 @@ export const PricingSection = () => {
               Мы предлагаем оптовые скидки и индивидуальный брендинг для торговых фирм и образовательных учреждений.
             </p>
           </div>
-          <Button color="primary" variant="flat" size="lg">
+          <Button color="primary" variant="flat" size="lg" onPress={onOpen}>
             Связаться для оптовых заказов
           </Button>
         </motion.div>
+
+        <Modal 
+          isOpen={isOpen} 
+          onOpenChange={onOpenChange}
+          placement="center"
+          size="lg"
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">Форма для оптовых заказов</ModalHeader>
+                <ModalBody>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <Input
+                      label="Имя"
+                      placeholder="Введите ваше имя"
+                      variant="bordered"
+                      isRequired
+                    />
+                    <Input
+                      label="Email"
+                      placeholder="Введите ваш email"
+                      type="email"
+                      variant="bordered"
+                      isRequired
+                    />
+                    <Input
+                      label="Компания"
+                      placeholder="Название вашей компании"
+                      variant="bordered"
+                      isRequired
+                    />
+                    <Input
+                      label="Количество дневников"
+                      placeholder="Укажите желаемое количество"
+                      type="number"
+                      variant="bordered"
+                      isRequired
+                    />
+                    <Textarea
+                      label="Дополнительная информация"
+                      placeholder="Укажите любые дополнительные требования или вопросы"
+                      variant="bordered"
+                    />
+                  </form>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="flat" onPress={onClose}>
+                    Закрыть
+                  </Button>
+                  <Button color="primary" onPress={handleSubmit}>
+                    Отправить заявку
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
       </div>
     </section>
   );

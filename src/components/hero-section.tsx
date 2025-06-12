@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Image } from "@heroui/react";
+import { Button, Image, Link } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { m as motion } from "framer-motion";
 
@@ -23,10 +23,22 @@ export const HeroSection = () => {
             Премиальный бумажный блокнот, специально разработанный для трейдеров, чтобы отслеживать, анализировать и улучшать свои торговые результаты.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button color="primary" size="lg" className="font-medium">
+            <Button 
+              as={Link}
+              href="#pricing"
+              color="primary" 
+              size="lg" 
+              className="font-medium"
+            >
               Получить дневник
             </Button>
-            <Button variant="bordered" size="lg" className="font-medium">
+            <Button 
+              as={Link}
+              href="#features"
+              variant="bordered" 
+              size="lg" 
+              className="font-medium"
+            >
               Узнать больше
             </Button>
           </div>
@@ -59,15 +71,15 @@ export const HeroSection = () => {
           <div className="relative z-10">
             <Image
               alt="Trader's Journal"
-              className="object-cover rounded-xl shadow-lg"
-              src="https://paperdream.by/wp-content/uploads/2025/06/photo_2025-06-06-00.05.27-3.png"
+              className="object-cover rounded-xl"
+              src="https://img.heroui.chat/image/book?w=600&h=500&u=journal1"
             />
           </div>
           <div className="absolute -bottom-6 -right-6 z-0">
             <Image
               alt="Trader's Journal Detail"
               className="object-cover rounded-xl shadow-lg w-48 h-48"
-              src=""
+              src="https://img.heroui.chat/image/book?w=200&h=200&u=journal2"
             />
           </div>
           <div className="absolute -top-4 -left-4 bg-primary/10 w-full h-full rounded-xl -z-10"></div>

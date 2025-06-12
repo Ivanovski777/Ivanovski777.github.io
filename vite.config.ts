@@ -1,13 +1,8 @@
-import react from "@vitejs/plugin-react";
-import {defineConfig} from "vite";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-import vitePluginInjectDataLocator from "./plugins/vite-plugin-inject-data-locator";
-
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
-  base: "/<ИМЯ_ВАШЕГО_РЕПОЗИТОРИЯ>/", // ← добавьте эту строку
-  plugins: [react(), vitePluginInjectDataLocator()],
-  server: {
-    allowedHosts: true,
-  },
-});
+  plugins: [react()],
+  base: '/traders-journal-landing/', // Замените на имя вашего репозитория
+})
